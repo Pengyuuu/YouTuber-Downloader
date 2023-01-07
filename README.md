@@ -1,3 +1,8 @@
+### Requirements
+
+PyTube
+1. `pip install pytube`
+
 ### urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1123)>
 
 1. Go to your applications folder and look for Python folder. Mine says "Python 3.11"
