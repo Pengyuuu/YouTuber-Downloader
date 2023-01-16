@@ -1,8 +1,9 @@
 from pytube import YouTube, Playlist
+import requests
 from sys import argv
 import datetime
 
-option = argv[1]
+option = int(argv[1])
 
 if (option == 1):
 
@@ -23,7 +24,7 @@ if (option == 1):
 
     yd.download()
 
-else:
+elif (option == 2):
 
     # Playlist cannot be private
     p = Playlist(argv[2])
@@ -35,3 +36,23 @@ else:
         print(f'Downloading: {videos.title} {videos.publish_date} {str(datetime.timedelta(seconds=videos.length))}')
 
         videos.streams.get_highest_resolution().download()
+
+elif (option == 3):
+
+    yt = YouTube(argv[2])
+
+    url = yt.thumbnail_url
+
+    img_data = requests.get(url).content
+
+    with open(f'{yt.title} thumbnail', 'wb') as handler: 
+
+        handler.write(img_data)
+
+elif (option == 4):
+
+    yt = YouTube(argv[2])
+
+    captions = yt.captions['en'].generate_srt_captions()
+
+    captions.download(f'{yt.title} en-sub')
